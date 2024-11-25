@@ -3,22 +3,27 @@ class User {
 
     private String name;
     private int UserID;
+    private static int IdValue = 20;
     private String email;
     private Payment PaymentInfo;
     private boolean isRegistered;
 
     public User(String name, int UserID, String email) {
         this.name = name;
-        this.UserID = UserID;
+        this.UserID = IdValue++;
         this.email = email;
     }
-
     public User() {}
-
-    public void destroy() {}
 
     public void setName(String name) {
         this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public int getUserID() {
+        return UserID;
     }
     
 }
