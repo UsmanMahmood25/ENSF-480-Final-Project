@@ -16,15 +16,17 @@ public class HomeUI extends JPanel {
 
         // Add a label
         JLabel label = new JLabel("Welcome to the Home Screen");
+        int labelPositionX = (int) (0.2);
         label.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridy = 0;
         add(label, gbc);
 
         // Add a button to go to the Sign-Up.Login screen
         JButton redirectButton1 = new JButton("Go to Sign-Up/Login Screen");
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        add(redirectButton1, gbc);
+        int buttonPostionX = (int) (0.1 * MainUI.getFrameWidth());
+        int buttonPostionY = (int) (0.2 * MainUI.getFrameHeight());
+        redirectButton1.setSize(buttonPostionX, buttonPostionY);
+        add(redirectButton1);
         // Add a button to go to the Theater screen
         JButton redirectButton2 = new JButton("Go to Theater Screen");
         gbc.gridx = 0;

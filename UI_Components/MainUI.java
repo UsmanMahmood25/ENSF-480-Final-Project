@@ -5,6 +5,9 @@ import java.awt.*;
 
 public class MainUI {
 
+    public static int frameWidth;
+    public static int frameHeight;
+
     public static void main(String [] args) {
         // Set-up screen dimensions
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -12,8 +15,8 @@ public class MainUI {
         int screenHeight = screenSize.height;
 
         // Set JFrame dimensions as a percentage of screen size
-        int frameWidth = (int) (screenWidth * 0.8); // 80% of screen width
-        int frameHeight = (int) (screenHeight * 0.8); // 80% of screen height
+        frameWidth = (int) (screenWidth * 0.8); // 80% of screen width
+        frameHeight = (int) (screenHeight * 0.8); // 80% of screen height
 
         // Creating the primary JFrame
         JFrame frame = new JFrame("Responsive UI");
@@ -51,7 +54,13 @@ public class MainUI {
 
         // Making the frame visible
         frame.setVisible(true);
+    }
 
+    public static int getFrameWidth() {
+        return frameWidth;
+    }
+    public static int getFrameHeight() {
+        return frameHeight;
     }
 }
 
