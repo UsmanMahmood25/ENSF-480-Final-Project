@@ -23,7 +23,7 @@ public class MainUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(frameWidth, frameHeight);
         frame.setLocationRelativeTo(null); // Centering the frame
-        frame.setResizable(false);
+        frame.setResizable(true);
 
         // Creating a Master CardLayout to switch between panels
         CardLayout cardLayout = new CardLayout();
