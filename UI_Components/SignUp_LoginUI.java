@@ -1,5 +1,7 @@
 package UI_Components;
 
+// Two segments, Sign-Up or Login on same Page
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -9,15 +11,40 @@ public class SignUp_LoginUI extends JPanel {
 
     public SignUp_LoginUI(CardLayout cardLayout, JPanel mainPanel) {
 
+        // Setting Default Values for the UI
         setLayout(null);
         int textSize = (int) (0.0275 * MainUI.getFrameWidth());
-        int textFieldSize = (int) (0.0175 * MainUI.getFrameWidth());
+        int textFieldSize = (int) (0.0165 * MainUI.getFrameWidth());
         int buttonWidth = (int) (0.25 * MainUI.getFrameWidth());
         int buttonHeight = (int) (0.08 * MainUI.getFrameHeight());
         int inputFieldWidth = (int) (0.4 * MainUI.getFrameWidth());
         int inputFieldHeight = (int) (0.075 * MainUI.getFrameHeight());
 
-        // Placeholder text behavior using focus listener
+        // Placeholder focus listener for JPasswordField
+        FocusListener passwordPlaceholderListener = new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                JPasswordField field = (JPasswordField) e.getComponent();
+                String text = new String(field.getPassword());
+                if (text.equals(field.getName())) {
+                    field.setText("");
+                    field.setEchoChar('●'); // Show dots when typing
+                    field.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                JPasswordField field = (JPasswordField) e.getComponent();
+                if (field.getPassword().length == 0) {
+                    field.setEchoChar((char) 0); // Remove dots for placeholder
+                    field.setText(field.getName());
+                    field.setForeground(Color.GRAY);
+                }
+            }
+        };
+
+        // Placeholder text behavior for JTextField
         FocusListener placeholderFocusListener = new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -47,8 +74,8 @@ public class SignUp_LoginUI extends JPanel {
         add(loginLabel);
 
         // Login Username
-        JTextField loginUsernameField = new JTextField("Username");
-        loginUsernameField.setName("Username");
+        JTextField loginUsernameField = new JTextField("Username (Email)");
+        loginUsernameField.setName("Username (Email)");
         int loginUsernameX = (int) (0.075 * MainUI.getFrameWidth());
         int loginUsernameY = (int) (0.15 * MainUI.getFrameHeight());
         loginUsernameField.setBounds(loginUsernameX, loginUsernameY, inputFieldWidth, inputFieldHeight);
@@ -65,7 +92,8 @@ public class SignUp_LoginUI extends JPanel {
         loginPasswordField.setBounds(loginPasswordX, loginPasswordY, inputFieldWidth, inputFieldHeight);
         loginPasswordField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         loginPasswordField.setForeground(Color.GRAY);
-        loginPasswordField.addFocusListener(placeholderFocusListener);
+        loginPasswordField.setEchoChar((char) 0); // Initially no dots
+        loginPasswordField.addFocusListener(passwordPlaceholderListener);
         add(loginPasswordField);
 
         // Login Button
@@ -85,8 +113,8 @@ public class SignUp_LoginUI extends JPanel {
         add(signUpLabel);
 
         // Sign-Up Username
-        JTextField signUpUsernameField = new JTextField("Username");
-        signUpUsernameField.setName("Username");
+        JTextField signUpUsernameField = new JTextField("Username (Email)");
+        signUpUsernameField.setName("Username (Email)");
         int signUpUsernameX = (int) (0.525 * MainUI.getFrameWidth());
         int signUpUsernameY = (int) (0.15 * MainUI.getFrameHeight());
         signUpUsernameField.setBounds(signUpUsernameX, signUpUsernameY, inputFieldWidth, inputFieldHeight);
@@ -103,7 +131,8 @@ public class SignUp_LoginUI extends JPanel {
         signUpPasswordField.setBounds(signUpPasswordX, signUpPasswordY, inputFieldWidth, inputFieldHeight);
         signUpPasswordField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         signUpPasswordField.setForeground(Color.GRAY);
-        signUpPasswordField.addFocusListener(placeholderFocusListener);
+        signUpPasswordField.setEchoChar((char) 0); // Initially no dots
+        signUpPasswordField.addFocusListener(passwordPlaceholderListener);
         add(signUpPasswordField);
 
         // Confirm Password
@@ -114,7 +143,8 @@ public class SignUp_LoginUI extends JPanel {
         confirmPasswordField.setBounds(confirmPasswordX, confirmPasswordY, inputFieldWidth, inputFieldHeight);
         confirmPasswordField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         confirmPasswordField.setForeground(Color.GRAY);
-        confirmPasswordField.addFocusListener(placeholderFocusListener);
+        confirmPasswordField.setEchoChar((char) 0); // Initially no dots
+        confirmPasswordField.addFocusListener(passwordPlaceholderListener);
         add(confirmPasswordField);
 
         // Sign-Up Button
@@ -137,9 +167,5 @@ public class SignUp_LoginUI extends JPanel {
         loginButton.addActionListener(e -> JOptionPane.showMessageDialog(this, "Login Successful!"));
         signUpButton.addActionListener(e -> JOptionPane.showMessageDialog(this, "Sign-Up Successful!"));
         homeButton.addActionListener(e -> cardLayout.show(mainPanel, "Home"));
-     
     }
 }
-
-
-// Two segments, Sign-Up or Login on same Page
