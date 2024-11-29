@@ -24,6 +24,8 @@ public class DataBase {
         }
     }
 
+    // public void insertUser
+
     // Closing the Data Base when program finished
     public void closeConnection() {
         try {  
