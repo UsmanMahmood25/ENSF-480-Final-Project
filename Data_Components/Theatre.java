@@ -1,22 +1,24 @@
+package Data_Components;
 import java.util.ArrayList;
 
 public class Theatre {
     private String theatreName;
     private String location;
     private ArrayList<Movie> movieList;
-    private ArrayList<ArrayList<Seat>> seatMap;
+    private ArrayList<Screen> screens;
 
-    public Theatre(String theatreName, String location, ArrayList<Movie> movieList, ArrayList<ArrayList<Seat>> seatMap) {
+    public Theatre(String theatreName, String location, ArrayList<Movie> movieList, ArrayList<Screen> screens) {
         this.theatreName = theatreName;
         this.location = location;
 
         this.movieList = new ArrayList<Movie>();
-        this.movieList.addAll(movieList);
+        if (movieList != null) {
+            this.movieList.addAll(movieList);
+        }
 
-        this.seatMap = new ArrayList<ArrayList<Seat>>();
-        for (int i = 0; i < seatMap.size(); i++) {
-            this.seatMap.add(i, new ArrayList<Seat>());
-            this.seatMap.get(i).addAll(seatMap.get(i));
+        this.screens = new ArrayList<Screen>();
+        if (screens != null) {
+            this.screens.addAll(screens);
         }
         
     }
@@ -34,11 +36,12 @@ public class Theatre {
     }
 
     
-    public void addMovie (Movie movie) throws IllegalArgumentException {
+    public void addMovie (Movie movie) {
         for (Movie m : movieList) {
             if (m == movie) {
                 System.out.println("Movie" + movie.getMovieName() + 
                     " is already playing at theatre" + this.theatreName + ".");
+                return;
             }
         }
         this.movieList.add(movie);
@@ -47,5 +50,27 @@ public class Theatre {
     public void removeMovie(Movie movie) {
         movieList.remove(movie);
     }
+
+    public ArrayList<Screen> getScreens() { return new ArrayList<>(this.screens); }
+    public void setScreens(ArrayList<Screen> screens) { 
+        this.screens = new ArrayList<>();
+        this.screens.addAll(screens);
+    }
+
+    
+    public void addScreen(String screenName, int rows, int cols) {
+        Screen screen = new Screen(screenName, rows, cols);
+        for (Screen s : screens) {
+            if (s == screen) {
+                return;
+            }
+        }
+        this.screens.add(screen);
+    }
+
+    public void removeScreen(Screen screen) {
+        this.screens.remove(screen);
+    }
+
 
 }

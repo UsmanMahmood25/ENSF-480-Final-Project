@@ -1,3 +1,4 @@
+package Data_Components;
 public class Seat {
     private final int ROW;
     private final int COL;
