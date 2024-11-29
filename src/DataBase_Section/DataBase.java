@@ -14,7 +14,7 @@ public class DataBase {
     public void createConnection() {
         String url = "jdbc:mysql://localhost:3306/project_db";
         String username = "root";
-        String password = "Gabber793$";
+        String password = "";
         try {
             DB_Connection = DriverManager.getConnection(url, username, password);
             System.out.println("Database connected successfully!");
