@@ -28,7 +28,7 @@ public class MainUI {
         frameHeight = (int) (screenHeight * 0.8); // 80% of screen height
 
         // Creating the primary JFrame
-        JFrame frame = new JFrame("Responsive UI");
+        JFrame frame = new JFrame("AcmePlex");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(frameWidth, frameHeight);
         frame.setLocationRelativeTo(null); // Centering the frame
