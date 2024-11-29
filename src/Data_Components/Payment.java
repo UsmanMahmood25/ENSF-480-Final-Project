@@ -1,4 +1,5 @@
 package Data_Components;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Payment {
@@ -17,3 +18,28 @@ public class Payment {
     public float getAmount() { return this.AMOUNT; }
 
 }
+
+// Code below functions as Real-Time date
+
+// class DateTime {
+//     private String day;
+//     private String month;
+//     private String year;
+
+//     public DateTime() {
+//         LocalDate currentDate = LocalDate.now();
+//         this.day = String.valueOf(currentDate.getDayOfMonth());
+//         this.month = String.valueOf(currentDate.getMonthValue());
+//         this.year = String.valueOf(currentDate.getYear());
+//     }
+
+//     public String getDay() {
+//         return day;
+//     }
+//     public String getMonth() {
+//         return month;
+//     }
+//     public String getYear() {
+//         return year;
+//     }
+// }
