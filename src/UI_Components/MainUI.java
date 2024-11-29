@@ -2,6 +2,8 @@ package UI_Components;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import DataBase_Section.DataBase;
 
@@ -31,6 +33,16 @@ public class MainUI {
         frame.setSize(frameWidth, frameHeight);
         frame.setLocationRelativeTo(null); // Centering the frame
         frame.setResizable(true);
+
+        // Create the WindowListener to handle window closing event
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Close the database connection when the window is closed
+                dataBase.closeConnection();
+                System.exit(0); // Exit the application
+            }
+        });
 
         // Creating a Master CardLayout to switch between panels
         CardLayout cardLayout = new CardLayout();
