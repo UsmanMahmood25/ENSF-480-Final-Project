@@ -44,7 +44,6 @@ public class MainUI {
             }
         });
 
-        // Creating a Master CardLayout to switch between panels
         CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel(cardLayout);
 
@@ -54,7 +53,7 @@ public class MainUI {
         MovieSelectUI moviePanel = new MovieSelectUI(cardLayout, mainPanel);
         PaymentUI paymentPanel = new PaymentUI(cardLayout, mainPanel);
         SeatMapUI seatPanel = new SeatMapUI(cardLayout, mainPanel);
-        TheaterUI theaterPanel = new TheaterUI(cardLayout, mainPanel);
+        TheaterSelectionUI theaterPanel = new TheaterSelectionUI(cardLayout, mainPanel);
         TicketBookingUI bookingPanel = new TicketBookingUI(cardLayout, mainPanel);
 
         // Adding the sub-level panels to the main panel

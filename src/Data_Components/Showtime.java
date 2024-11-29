@@ -7,9 +7,9 @@ public class Showtime {
     private Screen screen;
     private Date showDate;
     private Date announceDate;
-    private float ticketPrice;
+    private double ticketPrice;
 
-    public Showtime(Movie movie, Theatre theatre, Screen screen, Date showDate, Date announceDate, float ticketPrice) {
+    public Showtime(Movie movie, Theatre theatre, Screen screen, Date showDate, Date announceDate, double ticketPrice) {
         this.movie = movie;
         this.theatre = theatre;
         this.screen = screen;
@@ -33,6 +33,6 @@ public class Showtime {
     public Date getAnnounceDate() { return this.announceDate; }
     public void setAnnounceDate(Date announceDate) { this.announceDate = announceDate; }
 
-    public float getTicketPrice() { return this.ticketPrice; }
-    public void setTicketPrice(float ticketPrice) { this.ticketPrice = ticketPrice; }
+    public double getTicketPrice() { return this.ticketPrice; }
+    public void setTicketPrice(double ticketPrice) { this.ticketPrice = ticketPrice; }
 }

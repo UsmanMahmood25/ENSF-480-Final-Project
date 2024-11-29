@@ -3,11 +3,11 @@ public class Movie {
     private final int MOVIE_ID;
     private String movieName;
     private String genre;
-    private float durationMinutes;
+    private double durationMinutes;
     private String description;
     private static int counter = 0;
 
-    public Movie(String movieName, String genre, float durationMinutes, String description) {
+    public Movie(String movieName, String genre, double durationMinutes, String description) {
         this.MOVIE_ID = counter++;
         this.movieName = movieName;
         this.genre = genre;
@@ -23,8 +23,8 @@ public class Movie {
     public String getGenre() { return this.genre; }
     public void setGenre(String genre) { this.genre = genre; }
 
-    public float getDuration() { return this.durationMinutes; }
-    public void setDuration(float durationMinutes) { this.durationMinutes = durationMinutes; }
+    public double getDuration() { return this.durationMinutes; }
+    public void setDuration(double durationMinutes) { this.durationMinutes = durationMinutes; }
 
     public String getDescription() { return this.description; }
     public void setDescription(String description) { this.description = description; }
