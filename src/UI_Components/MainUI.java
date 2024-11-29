@@ -2,25 +2,47 @@ package UI_Components;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import DataBase_Section.DataBase;
 
 public class MainUI {
 
+    public static int frameWidth;
+    public static int frameHeight;
+    public static final DataBase dataBase = new DataBase();
+
     public static void main(String [] args) {
+
+        // Connecting to the DataBase
+        dataBase.createConnection();
+        
         // Set-up screen dimensions
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenWidth = screenSize.width;
         int screenHeight = screenSize.height;
 
         // Set JFrame dimensions as a percentage of screen size
-        int frameWidth = (int) (screenWidth * 0.8); // 80% of screen width
-        int frameHeight = (int) (screenHeight * 0.8); // 80% of screen height
+        frameWidth = (int) (screenWidth * 0.8); // 80% of screen width
+        frameHeight = (int) (screenHeight * 0.8); // 80% of screen height
 
         // Creating the primary JFrame
         JFrame frame = new JFrame("AcmePlex");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(frameWidth, frameHeight);
         frame.setLocationRelativeTo(null); // Centering the frame
-        frame.setResizable(false);
+        frame.setResizable(true);
+
+        // Create the WindowListener to handle window closing event
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Close the database connection when the window is closed
+                dataBase.closeConnection();
+                System.exit(0); // Exit the application
+            }
+        });
 
         // Creating a Master CardLayout to switch between panels
         CardLayout cardLayout = new CardLayout();
@@ -51,8 +73,20 @@ public class MainUI {
 
         // Making the frame visible
         frame.setVisible(true);
+    }
 
+    public static int getFrameWidth() {
+        return frameWidth;
+    }
+    public static int getFrameHeight() {
+        return frameHeight;
     }
 }
 
 // The main frame of the UI
+
+// For DB connection set up:
+// javac -cp lib/mysql-connector-j-9.1.0.jar -d bin src/UI_Components/*.java src/DataBase_Section/*.java src/Data_Components/*.java
+
+// To run the program:
+// java -cp bin;lib/mysql-connector-j-9.1.0.jar UI_Components.MainUI

@@ -1,3 +1,4 @@
+package Data_Components;
 public class Movie {
     private final int MOVIE_ID;
     private String movieName;
