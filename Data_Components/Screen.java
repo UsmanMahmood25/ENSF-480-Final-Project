@@ -37,7 +37,7 @@ public class Screen {
     /*
      * Attempts to book seat at (ROW, COL). Returns 1 on success, 0 on failure (seat is already booked, or out of range).
      */
-    public int bookSeat(int row, int col) {
+    public int bookSeat(int row, int col, User occupant) {
         if (seatMap.size() < row) {
             return 0;
         }
@@ -47,9 +47,11 @@ public class Screen {
         if (seatMap.get(row - 1).get(col - 1).isOccupied()) {
             return 0;
         }
-        seatMap.get(row - 1).get(col - 1).setOccupied();
-        seatsAvailable--;
-        return 1;
+        if (seatMap.get(row - 1).get(col - 1).setOccupant(occupant) == 1) {
+            seatsAvailable--;
+            return 1;
+        }
+        return 0;
     }
 
     /*
@@ -66,9 +68,11 @@ public class Screen {
         if (!seatMap.get(row - 1).get(col - 1).isOccupied()) {
             return 0;
         }
-        seatMap.get(row - 1).get(col - 1).setUnoccupied();
-        seatsAvailable++;
-        return 1;
+        if (seatMap.get(row - 1).get(col - 1).removeOccupant() == 1) {
+            seatsAvailable++;
+            return 1;
+        }
+        return 0;
     }
 
 }
