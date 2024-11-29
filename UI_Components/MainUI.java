@@ -3,12 +3,19 @@ package UI_Components;
 import javax.swing.*;
 import java.awt.*;
 
+import DataBase_Section.DataBase;
+
 public class MainUI {
 
     public static int frameWidth;
     public static int frameHeight;
+    public static final DataBase dataBase = new DataBase();
 
     public static void main(String [] args) {
+
+        // Connecting to the DataBase
+        dataBase.createConnection();
+        
         // Set-up screen dimensions
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenWidth = screenSize.width;
