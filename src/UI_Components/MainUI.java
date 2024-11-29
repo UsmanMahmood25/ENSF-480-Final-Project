@@ -72,3 +72,9 @@ public class MainUI {
 }
 
 // The main frame of the UI
+
+// For DB connection set up:
+// javac -cp lib/mysql-connector-j-9.1.0.jar -d bin src/UI_Components/*.java src/DataBase_Section/*.java src/Data_Components/*.java
+
+// To run the program:
+// java -cp bin;lib/mysql-connector-j-9.1.0.jar UI_Components.MainUI

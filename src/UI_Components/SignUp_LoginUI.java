@@ -28,7 +28,7 @@ public class SignUp_LoginUI extends JPanel {
                 String text = new String(field.getPassword());
                 if (text.equals(field.getName())) {
                     field.setText("");
-                    field.setEchoChar('●'); // Show dots when typing
+                    field.setEchoChar('*'); // Show dots when typing
                     field.setForeground(Color.BLACK);
                 }
             }

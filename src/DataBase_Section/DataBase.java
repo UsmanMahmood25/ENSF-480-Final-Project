@@ -12,10 +12,14 @@ public class DataBase {
 
     // Creating Connection to the MySQL DataBase
     public void createConnection() {
+        String url = "jdbc:mysql://localhost:3306/project_db";
+        String username = "root";
+        String password = "Gabber793$";
         try {
-            DB_Connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PROJECT_DB", "root", "Gabber793$");
+            DB_Connection = DriverManager.getConnection(url, username, password);
+            System.out.println("Database connected successfully!");
         } catch (SQLException e) {
-            System.out.println("An Error Occured: Unable to connect to Data Base");
+            System.out.println("Data Base connection failed");
             e.printStackTrace();
         }
     }
