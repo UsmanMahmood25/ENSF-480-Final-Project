@@ -10,9 +10,14 @@ import Data_Components.*;
 
 public class MainUI {
 
+    // Initializing the frame of UI
     public static int frameWidth;
     public static int frameHeight;
+    // Initializing the dataBase
     public static final DataBase dataBase = new DataBase();
+    // Intializing the Users (Standard and Registered)
+    public static User currentUser = null;
+    public static RegisteredUser currentRegisteredUser = null;
 
     public static void main(String [] args) {
 

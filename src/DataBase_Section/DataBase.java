@@ -25,6 +25,7 @@ public class DataBase {
         }
     }
 
+    // Checks if the User (Standard) exists
     public boolean checkUserExists(String email) {
         String query = "SELECT email FROM Users WHERE email = ?";
         try (PreparedStatement preparedStatement = DB_Connection.prepareStatement(query)) {
@@ -38,6 +39,7 @@ public class DataBase {
         }
     }
 
+    // Checks if the User (Registered) exists
     public boolean checkRegisteredUserExists(String email) {
         String query = "SELECT email FROM RegisteredUsers WHERE email = ?";
         try (PreparedStatement preparedStatement = DB_Connection.prepareStatement(query)) {
@@ -51,6 +53,7 @@ public class DataBase {
         }
     }
 
+    // Checking if the Login Details are valid
     public boolean verifyLoginCredentials(String email, String password) {
         String query = "SELECT RU.email FROM RegisteredUsers RU INNER JOIN Users U ON RU.email = U.email WHERE U.email = ? AND U.u_password = ?";
         try (PreparedStatement preparedStatement = DB_Connection.prepareStatement(query)) {
@@ -65,8 +68,9 @@ public class DataBase {
         }
     }
 
+    // Inserting a new User (Standard) into the Data Base
     public boolean insertNewUser(String name, String email, String password) {
-        String query = "INSERT INTO Users (name, email, u_password) VALUES (?, ?, ?)";
+        String query = "INSERT INTO Users (email, u_password) VALUES (?, ?)";
         try (PreparedStatement preparedStatement = DB_Connection.prepareStatement(query)) {
             // Set the parameters for the PreparedStatement
             preparedStatement.setString(1, name);
@@ -85,6 +89,7 @@ public class DataBase {
         }
     }
 
+    // Inserting a new User (Registered) into the Data Base 
     public boolean insertNewRegisteredUser(String name, String email, String password, String address, LocalDate registrationDate) {
         String insertUserQuery = "INSERT INTO Users (email, u_password) VALUES (?, ?)";
         String insertRegisteredUserQuery = "INSERT INTO RegisteredUsers (email, ru_name, ru_address, date_of_registration) VALUES (?, ?, ?, ?)";

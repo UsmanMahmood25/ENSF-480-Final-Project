@@ -13,7 +13,7 @@ public class RegisteredUser extends User {
         this.name = name;
         this.address = address;
     }
-
+     
     public Date getDateOfRegistration() { return this.DATE_OF_REGISTRATION; }
 
     public String getName() { return this.name; }

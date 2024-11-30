@@ -3,6 +3,9 @@ package UI_Components;
 // Two segments, Sign-Up or Login on same Page
 
 import javax.swing.*;
+
+import Data_Components.RegisteredUser;
+
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -69,7 +72,7 @@ public class SignUp_LoginUI extends JPanel {
         // Login Segment
         JLabel loginLabel = new JLabel("Login");
         int loginLabelX = (int) (0.075 * MainUI.getFrameWidth());
-        int loginLabelY = (int) (0.05 * MainUI.getFrameHeight());
+        int loginLabelY = (int) (0.025 * MainUI.getFrameHeight());
         loginLabel.setBounds(loginLabelX, loginLabelY, inputFieldWidth, inputFieldHeight);
         loginLabel.setFont(new Font("Arial", Font.BOLD, textSize));
         add(loginLabel);
@@ -78,7 +81,7 @@ public class SignUp_LoginUI extends JPanel {
         JTextField loginUsernameField = new JTextField("Username (Email)");
         loginUsernameField.setName("Username (Email)");
         int loginUsernameX = (int) (0.075 * MainUI.getFrameWidth());
-        int loginUsernameY = (int) (0.15 * MainUI.getFrameHeight());
+        int loginUsernameY = (int) (0.125 * MainUI.getFrameHeight());
         loginUsernameField.setBounds(loginUsernameX, loginUsernameY, inputFieldWidth, inputFieldHeight);
         loginUsernameField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         loginUsernameField.setForeground(Color.GRAY);
@@ -89,7 +92,7 @@ public class SignUp_LoginUI extends JPanel {
         JPasswordField loginPasswordField = new JPasswordField("Password");
         loginPasswordField.setName("Password");
         int loginPasswordX = (int) (0.075 * MainUI.getFrameWidth());
-        int loginPasswordY = (int) (0.25 * MainUI.getFrameHeight());
+        int loginPasswordY = (int) (0.225 * MainUI.getFrameHeight());
         loginPasswordField.setBounds(loginPasswordX, loginPasswordY, inputFieldWidth, inputFieldHeight);
         loginPasswordField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         loginPasswordField.setForeground(Color.GRAY);
@@ -100,7 +103,7 @@ public class SignUp_LoginUI extends JPanel {
         // Login Button
         JButton loginButton = new JButton("Login");
         int loginButtonX = (int) (0.075 * MainUI.getFrameWidth());
-        int loginButtonY = (int) (0.35 * MainUI.getFrameHeight());
+        int loginButtonY = (int) (0.325 * MainUI.getFrameHeight());
         loginButton.setBounds(loginButtonX, loginButtonY, buttonWidth, buttonHeight);
         loginButton.setFont(new Font("Arial", Font.BOLD, textSize));
         add(loginButton);
@@ -108,7 +111,7 @@ public class SignUp_LoginUI extends JPanel {
         // Sign-Up Segment
         JLabel signUpLabel = new JLabel("Sign-Up");
         int signUpLabelX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpLabelY = (int) (0.05 * MainUI.getFrameHeight());
+        int signUpLabelY = (int) (0.025 * MainUI.getFrameHeight());
         signUpLabel.setBounds(signUpLabelX, signUpLabelY, inputFieldWidth, inputFieldHeight);
         signUpLabel.setFont(new Font("Arial", Font.BOLD, textSize));
         add(signUpLabel);
@@ -117,7 +120,7 @@ public class SignUp_LoginUI extends JPanel {
         JTextField signUpUsernameField = new JTextField("Name");
         signUpUsernameField.setName("Name");
         int signUpUsernameX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpUsernameY = (int) (0.15 * MainUI.getFrameHeight());
+        int signUpUsernameY = (int) (0.125 * MainUI.getFrameHeight());
         signUpUsernameField.setBounds(signUpUsernameX, signUpUsernameY, inputFieldWidth, inputFieldHeight);
         signUpUsernameField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         signUpUsernameField.setForeground(Color.GRAY);
@@ -128,7 +131,7 @@ public class SignUp_LoginUI extends JPanel {
         JTextField signUpNameField = new JTextField("Username (Email)");
         signUpNameField.setName("Username (Email)");
         int signUpNameX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpNameY = (int) (0.25 * MainUI.getFrameHeight());
+        int signUpNameY = (int) (0.225 * MainUI.getFrameHeight());
         signUpNameField.setBounds(signUpNameX, signUpNameY, inputFieldWidth, inputFieldHeight);
         signUpNameField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         signUpNameField.setForeground(Color.GRAY);
@@ -139,18 +142,40 @@ public class SignUp_LoginUI extends JPanel {
         JTextField signUpAddressField = new JTextField("Address");
         signUpAddressField.setName("Address");
         int signUpAddressX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpAddressY = (int) (0.35 * MainUI.getFrameHeight());
+        int signUpAddressY = (int) (0.325 * MainUI.getFrameHeight());
         signUpAddressField.setBounds(signUpAddressX, signUpAddressY, inputFieldWidth, inputFieldHeight);
         signUpAddressField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         signUpAddressField.setForeground(Color.GRAY);
         signUpAddressField.addFocusListener(placeholderFocusListener);
         add(signUpAddressField);
 
+        // Sign-Up Credit Card Info
+        JTextField signUpCCField = new JTextField("Credit Card Number");
+        signUpCCField.setName("Credit Card Number");
+        int signUpCCX = (int) (0.525 * MainUI.getFrameWidth());
+        int signUpCCY = (int) (0.425 * MainUI.getFrameHeight());
+        signUpCCField.setBounds(signUpCCX, signUpCCY, inputFieldWidth, inputFieldHeight);
+        signUpCCField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
+        signUpCCField.setForeground(Color.GRAY);
+        signUpCCField.addFocusListener(placeholderFocusListener);
+        add(signUpCCField);
+
+        // Sign-Up Credit Card CVC Info
+        JTextField signUpCC_CVCField = new JTextField("Address");
+        signUpCC_CVCField.setName("Address");
+        int signUpCC_CVCX = (int) (0.525 * MainUI.getFrameWidth());
+        int signUpCC_CVCY = (int) (0.525 * MainUI.getFrameHeight());
+        signUpCC_CVCField.setBounds(signUpCC_CVCX, signUpCC_CVCY, inputFieldWidth, inputFieldHeight);
+        signUpCC_CVCField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
+        signUpCC_CVCField.setForeground(Color.GRAY);
+        signUpCC_CVCField.addFocusListener(placeholderFocusListener);
+        add(signUpCC_CVCField);
+
         // Sign-Up Password
         JPasswordField signUpPasswordField = new JPasswordField("Password");
         signUpPasswordField.setName("Password");
         int signUpPasswordX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpPasswordY = (int) (0.45 * MainUI.getFrameHeight());
+        int signUpPasswordY = (int) (0.625 * MainUI.getFrameHeight());
         signUpPasswordField.setBounds(signUpPasswordX, signUpPasswordY, inputFieldWidth, inputFieldHeight);
         signUpPasswordField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         signUpPasswordField.setForeground(Color.GRAY);
@@ -162,7 +187,7 @@ public class SignUp_LoginUI extends JPanel {
         JPasswordField confirmPasswordField = new JPasswordField("Confirm Password");
         confirmPasswordField.setName("Confirm Password");
         int confirmPasswordX = (int) (0.525 * MainUI.getFrameWidth());
-        int confirmPasswordY = (int) (0.55 * MainUI.getFrameHeight());
+        int confirmPasswordY = (int) (0.725 * MainUI.getFrameHeight());
         confirmPasswordField.setBounds(confirmPasswordX, confirmPasswordY, inputFieldWidth, inputFieldHeight);
         confirmPasswordField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         confirmPasswordField.setForeground(Color.GRAY);
@@ -173,20 +198,19 @@ public class SignUp_LoginUI extends JPanel {
         // Sign-Up Button
         JButton signUpButton = new JButton("Sign-Up");
         int signUpButtonX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpButtonY = (int) (0.65 * MainUI.getFrameHeight());
+        int signUpButtonY = (int) (0.825 * MainUI.getFrameHeight());
         signUpButton.setBounds(signUpButtonX, signUpButtonY, buttonWidth, buttonHeight);
         signUpButton.setFont(new Font("Arial", Font.BOLD, textSize));
         add(signUpButton);
 
         // Home Page Redirect Button
         JButton homeButton = new JButton("Return Home");
-        int homeButtonX = (int) (0.375 * MainUI.getFrameWidth());
-        int homeButtonY = (int) (0.80 * MainUI.getFrameHeight());
+        int homeButtonX = (int) (0.125 * MainUI.getFrameWidth());
+        int homeButtonY = (int) (0.625 * MainUI.getFrameHeight());
         homeButton.setBounds(homeButtonX, homeButtonY, buttonWidth, buttonHeight);
         homeButton.setFont(new Font("Arial", Font.BOLD, textSize));
         add(homeButton);
 
-        // Action listeners for buttons
         // Action listeners for buttons
         loginButton.addActionListener(e -> {
             String email = loginUsernameField.getText();
@@ -195,6 +219,7 @@ public class SignUp_LoginUI extends JPanel {
             if (MainUI.dataBase.checkRegisteredUserExists(email)) {
                 if (MainUI.dataBase.verifyLoginCredentials(email, password)) {
                     JOptionPane.showMessageDialog(this, "Login Successful!");
+
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid Password.");
                 }
@@ -209,6 +234,8 @@ public class SignUp_LoginUI extends JPanel {
             String password = new String(signUpPasswordField.getPassword());
             String confirmPassword = new String(confirmPasswordField.getPassword());
             String address = signUpAddressField.getText(); // New field for address
+            String creditCard = signUpCCField.getText();
+            String CVC = signUpCC_CVCField.getText();
             LocalDate registrationDate = LocalDate.now(); // Automatically set to the current date
 
             if (password.equals(confirmPassword)) {
@@ -217,6 +244,7 @@ public class SignUp_LoginUI extends JPanel {
                     boolean success = MainUI.dataBase.insertNewRegisteredUser(name, email, password, address, registrationDate);
                     if (success) {
                         JOptionPane.showMessageDialog(this, "Sign-Up Successful!");
+                        // MainUI.currentRegisteredUser = new RegisteredUser(email, password, confirmPassword, null, null, name, address);
                     } else {
                         JOptionPane.showMessageDialog(this, "Sign-Up Failed! Please try again.");
                     }

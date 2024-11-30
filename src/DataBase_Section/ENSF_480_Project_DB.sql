@@ -11,8 +11,8 @@ USE PROJECT_DB;
 -- Create the Users table
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
-    email VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY,
-    u_password VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE PRIMARY KEY,
+    u_password VARCHAR(100),
     credit_card_number VARCHAR(16),
     cvc VARCHAR(3),
     expiry_date DATE
@@ -21,10 +21,10 @@ CREATE TABLE Users (
 -- Create the RegisteredUsers table
 DROP TABLE IF EXISTS RegisteredUsers;
 CREATE TABLE RegisteredUsers (
-    email VARCHAR(255) NOT NULL,
+    email VARCHAR(255),
     ru_name VARCHAR(255),
     ru_address VARCHAR(255),
-    date_of_registration DATE NOT NULL,
+    date_of_registration DATE,
     FOREIGN KEY (email) REFERENCES Users(email) ON DELETE CASCADE
 );
 
