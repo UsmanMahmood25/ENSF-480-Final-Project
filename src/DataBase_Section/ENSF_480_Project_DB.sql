@@ -8,6 +8,26 @@ CREATE DATABASE PROJECT_DB;
 -- Select the database
 USE PROJECT_DB;
 
+-- Create the Users table
+DROP TABLE IF EXISTS Users;
+CREATE TABLE Users (
+    email VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY,
+    u_password VARCHAR(100) NOT NULL,
+    credit_card_number VARCHAR(16),
+    cvc VARCHAR(3),
+    expiry_date DATE
+);
+
+-- Create the RegisteredUsers table
+DROP TABLE IF EXISTS RegisteredUsers;
+CREATE TABLE RegisteredUsers (
+    email VARCHAR(255) NOT NULL,
+    ru_name VARCHAR(255),
+    ru_address VARCHAR(255),
+    date_of_registration DATE NOT NULL,
+    FOREIGN KEY (email) REFERENCES Users(email) ON DELETE CASCADE
+);
+
 -- Create the Theater table
 DROP TABLE IF EXISTS Theater;
 CREATE TABLE Theater (
@@ -45,26 +65,6 @@ CREATE TABLE Theater_Movies (
     PRIMARY KEY (theater_id, movie_id),
     FOREIGN KEY (theater_id) REFERENCES Theater(theater_id) ON DELETE CASCADE,
     FOREIGN KEY (movie_id) REFERENCES Movies(movie_id) ON DELETE CASCADE
-);
-
--- Create the Users table
-DROP TABLE IF EXISTS Users;
-CREATE TABLE Users (
-    email VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY,
-    u_password VARCHAR(100) NOT NULL,
-    credit_card_number VARCHAR(16),
-    cvc VARCHAR(3),
-    expiry_date DATE
-);
-
--- Create the RegisteredUsers table
-DROP TABLE IF EXISTS RegisteredUsers;
-CREATE TABLE RegisteredUsers (
-    email VARCHAR(255) NOT NULL,
-    ru_name VARCHAR(255),
-    ru_address VARCHAR(255),
-    date_of_registration DATE NOT NULL,
-    FOREIGN KEY (email) REFERENCES Users(email) ON DELETE CASCADE
 );
 
 

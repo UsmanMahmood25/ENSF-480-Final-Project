@@ -5,7 +5,8 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import DataBase_Section.DataBase;
+import DataBase_Section.*;
+import Data_Components.*;
 
 public class MainUI {
 
