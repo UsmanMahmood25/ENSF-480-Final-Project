@@ -17,12 +17,12 @@ public class SignUp_LoginUI extends JPanel {
 
         // Setting Default Values for the UI
         setLayout(null);
-        int textSize = (int) (0.0275 * MainUI.getFrameWidth());
-        int textFieldSize = (int) (0.0165 * MainUI.getFrameWidth());
-        int buttonWidth = (int) (0.25 * MainUI.getFrameWidth());
-        int buttonHeight = (int) (0.08 * MainUI.getFrameHeight());
-        int inputFieldWidth = (int) (0.4 * MainUI.getFrameWidth());
-        int inputFieldHeight = (int) (0.075 * MainUI.getFrameHeight());
+        int textSize = (int) (0.020 * MainUI.getFrameWidth());
+        int textFieldSize = (int) (0.01625 * MainUI.getFrameWidth());
+        int buttonWidth = (int) (0.225 * MainUI.getFrameWidth());
+        int buttonHeight = (int) (0.0325 * MainUI.getFrameHeight());
+        int inputFieldWidth = (int) (0.325 * MainUI.getFrameWidth());
+        int inputFieldHeight = (int) (0.0705 * MainUI.getFrameHeight());
 
         // Placeholder focus listener for JPasswordField
         FocusListener passwordPlaceholderListener = new FocusListener() {
@@ -72,7 +72,7 @@ public class SignUp_LoginUI extends JPanel {
         // Login Segment
         JLabel loginLabel = new JLabel("Login");
         int loginLabelX = (int) (0.075 * MainUI.getFrameWidth());
-        int loginLabelY = (int) (0.025 * MainUI.getFrameHeight());
+        int loginLabelY = (int) (0.01 * MainUI.getFrameHeight());
         loginLabel.setBounds(loginLabelX, loginLabelY, inputFieldWidth, inputFieldHeight);
         loginLabel.setFont(new Font("Arial", Font.BOLD, textSize));
         add(loginLabel);
@@ -81,7 +81,7 @@ public class SignUp_LoginUI extends JPanel {
         JTextField loginUsernameField = new JTextField("Username (Email)");
         loginUsernameField.setName("Username (Email)");
         int loginUsernameX = (int) (0.075 * MainUI.getFrameWidth());
-        int loginUsernameY = (int) (0.125 * MainUI.getFrameHeight());
+        int loginUsernameY = (int) (0.11 * MainUI.getFrameHeight());
         loginUsernameField.setBounds(loginUsernameX, loginUsernameY, inputFieldWidth, inputFieldHeight);
         loginUsernameField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         loginUsernameField.setForeground(Color.GRAY);
@@ -92,7 +92,7 @@ public class SignUp_LoginUI extends JPanel {
         JPasswordField loginPasswordField = new JPasswordField("Password");
         loginPasswordField.setName("Password");
         int loginPasswordX = (int) (0.075 * MainUI.getFrameWidth());
-        int loginPasswordY = (int) (0.225 * MainUI.getFrameHeight());
+        int loginPasswordY = (int) (0.21 * MainUI.getFrameHeight());
         loginPasswordField.setBounds(loginPasswordX, loginPasswordY, inputFieldWidth, inputFieldHeight);
         loginPasswordField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         loginPasswordField.setForeground(Color.GRAY);
@@ -103,7 +103,7 @@ public class SignUp_LoginUI extends JPanel {
         // Login Button
         JButton loginButton = new JButton("Login");
         int loginButtonX = (int) (0.075 * MainUI.getFrameWidth());
-        int loginButtonY = (int) (0.325 * MainUI.getFrameHeight());
+        int loginButtonY = (int) (0.31 * MainUI.getFrameHeight());
         loginButton.setBounds(loginButtonX, loginButtonY, buttonWidth, buttonHeight);
         loginButton.setFont(new Font("Arial", Font.BOLD, textSize));
         add(loginButton);
@@ -111,7 +111,7 @@ public class SignUp_LoginUI extends JPanel {
         // Sign-Up Segment
         JLabel signUpLabel = new JLabel("Sign-Up");
         int signUpLabelX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpLabelY = (int) (0.025 * MainUI.getFrameHeight());
+        int signUpLabelY = (int) (0.01 * MainUI.getFrameHeight());
         signUpLabel.setBounds(signUpLabelX, signUpLabelY, inputFieldWidth, inputFieldHeight);
         signUpLabel.setFont(new Font("Arial", Font.BOLD, textSize));
         add(signUpLabel);
@@ -120,7 +120,7 @@ public class SignUp_LoginUI extends JPanel {
         JTextField signUpUsernameField = new JTextField("Name");
         signUpUsernameField.setName("Name");
         int signUpUsernameX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpUsernameY = (int) (0.125 * MainUI.getFrameHeight());
+        int signUpUsernameY = (int) (0.11 * MainUI.getFrameHeight());
         signUpUsernameField.setBounds(signUpUsernameX, signUpUsernameY, inputFieldWidth, inputFieldHeight);
         signUpUsernameField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         signUpUsernameField.setForeground(Color.GRAY);
@@ -131,7 +131,7 @@ public class SignUp_LoginUI extends JPanel {
         JTextField signUpNameField = new JTextField("Username (Email)");
         signUpNameField.setName("Username (Email)");
         int signUpNameX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpNameY = (int) (0.225 * MainUI.getFrameHeight());
+        int signUpNameY = (int) (0.21 * MainUI.getFrameHeight());
         signUpNameField.setBounds(signUpNameX, signUpNameY, inputFieldWidth, inputFieldHeight);
         signUpNameField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         signUpNameField.setForeground(Color.GRAY);
@@ -142,7 +142,7 @@ public class SignUp_LoginUI extends JPanel {
         JTextField signUpAddressField = new JTextField("Address");
         signUpAddressField.setName("Address");
         int signUpAddressX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpAddressY = (int) (0.325 * MainUI.getFrameHeight());
+        int signUpAddressY = (int) (0.31 * MainUI.getFrameHeight());
         signUpAddressField.setBounds(signUpAddressX, signUpAddressY, inputFieldWidth, inputFieldHeight);
         signUpAddressField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         signUpAddressField.setForeground(Color.GRAY);
@@ -153,7 +153,7 @@ public class SignUp_LoginUI extends JPanel {
         JTextField signUpCCField = new JTextField("Credit Card Number");
         signUpCCField.setName("Credit Card Number");
         int signUpCCX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpCCY = (int) (0.425 * MainUI.getFrameHeight());
+        int signUpCCY = (int) (0.41 * MainUI.getFrameHeight());
         signUpCCField.setBounds(signUpCCX, signUpCCY, inputFieldWidth, inputFieldHeight);
         signUpCCField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         signUpCCField.setForeground(Color.GRAY);
@@ -161,21 +161,32 @@ public class SignUp_LoginUI extends JPanel {
         add(signUpCCField);
 
         // Sign-Up Credit Card CVC Info
-        JTextField signUpCC_CVCField = new JTextField("Address");
-        signUpCC_CVCField.setName("Address");
+        JTextField signUpCC_CVCField = new JTextField("CVC");
+        signUpCC_CVCField.setName("CVC");
         int signUpCC_CVCX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpCC_CVCY = (int) (0.525 * MainUI.getFrameHeight());
+        int signUpCC_CVCY = (int) (0.51 * MainUI.getFrameHeight());
         signUpCC_CVCField.setBounds(signUpCC_CVCX, signUpCC_CVCY, inputFieldWidth, inputFieldHeight);
         signUpCC_CVCField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         signUpCC_CVCField.setForeground(Color.GRAY);
         signUpCC_CVCField.addFocusListener(placeholderFocusListener);
         add(signUpCC_CVCField);
 
+        // Sign-Up Credit Card Expiry Date Info
+        JTextField signUpCC_ExpireField = new JTextField("Credit Card Expiry Date");
+        signUpCC_ExpireField.setName("Credit Card Expiry Date");
+        int signUpCC_ExpX = (int) (0.525 * MainUI.getFrameWidth());
+        int signUpCC_ExpY = (int) (0.61 * MainUI.getFrameHeight());
+        signUpCC_ExpireField.setBounds(signUpCC_ExpX, signUpCC_ExpY, inputFieldWidth, inputFieldHeight);
+        signUpCC_ExpireField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
+        signUpCC_ExpireField.setForeground(Color.GRAY);
+        signUpCC_ExpireField.addFocusListener(placeholderFocusListener);
+        add(signUpCC_ExpireField);
+
         // Sign-Up Password
         JPasswordField signUpPasswordField = new JPasswordField("Password");
         signUpPasswordField.setName("Password");
         int signUpPasswordX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpPasswordY = (int) (0.625 * MainUI.getFrameHeight());
+        int signUpPasswordY = (int) (0.71 * MainUI.getFrameHeight());
         signUpPasswordField.setBounds(signUpPasswordX, signUpPasswordY, inputFieldWidth, inputFieldHeight);
         signUpPasswordField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         signUpPasswordField.setForeground(Color.GRAY);
@@ -187,7 +198,7 @@ public class SignUp_LoginUI extends JPanel {
         JPasswordField confirmPasswordField = new JPasswordField("Confirm Password");
         confirmPasswordField.setName("Confirm Password");
         int confirmPasswordX = (int) (0.525 * MainUI.getFrameWidth());
-        int confirmPasswordY = (int) (0.725 * MainUI.getFrameHeight());
+        int confirmPasswordY = (int) (0.81 * MainUI.getFrameHeight());
         confirmPasswordField.setBounds(confirmPasswordX, confirmPasswordY, inputFieldWidth, inputFieldHeight);
         confirmPasswordField.setFont(new Font("Arial", Font.BOLD, textFieldSize));
         confirmPasswordField.setForeground(Color.GRAY);
@@ -198,7 +209,7 @@ public class SignUp_LoginUI extends JPanel {
         // Sign-Up Button
         JButton signUpButton = new JButton("Sign-Up");
         int signUpButtonX = (int) (0.525 * MainUI.getFrameWidth());
-        int signUpButtonY = (int) (0.825 * MainUI.getFrameHeight());
+        int signUpButtonY = (int) (0.91 * MainUI.getFrameHeight());
         signUpButton.setBounds(signUpButtonX, signUpButtonY, buttonWidth, buttonHeight);
         signUpButton.setFont(new Font("Arial", Font.BOLD, textSize));
         add(signUpButton);
@@ -236,12 +247,13 @@ public class SignUp_LoginUI extends JPanel {
             String address = signUpAddressField.getText(); // New field for address
             String creditCard = signUpCCField.getText();
             String CVC = signUpCC_CVCField.getText();
+            String creditCardExpire = signUpCC_ExpireField.getText();
             LocalDate registrationDate = LocalDate.now(); // Automatically set to the current date
 
             if (password.equals(confirmPassword)) {
                 if (!MainUI.dataBase.checkUserExists(email)) {
                     // Insert user into the database
-                    boolean success = MainUI.dataBase.insertNewRegisteredUser(name, email, password, address, registrationDate);
+                    boolean success = MainUI.dataBase.insertNewRegisteredUser(name, email, password, address, creditCard, CVC, creditCardExpire, registrationDate);
                     if (success) {
                         JOptionPane.showMessageDialog(this, "Sign-Up Successful!");
                         // MainUI.currentRegisteredUser = new RegisteredUser(email, password, confirmPassword, null, null, name, address);

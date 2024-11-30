@@ -31,7 +31,7 @@ public class MainUI {
 
         // Set JFrame dimensions as a percentage of screen size
         frameWidth = (int) (screenWidth * 0.8); // 80% of screen width
-        frameHeight = (int) (screenHeight * 0.8); // 80% of screen height
+        frameHeight = (int) (screenHeight * 0.9); // 90% of screen height
 
         // Creating the primary JFrame
         JFrame frame = new JFrame("AcmePlex");

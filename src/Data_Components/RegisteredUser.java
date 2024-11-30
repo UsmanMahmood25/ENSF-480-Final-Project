@@ -7,7 +7,7 @@ public class RegisteredUser extends User {
     private String name;
     private String address;
 
-    public RegisteredUser(String email, String creditCardNumber, String CVC, Date expiryDate, Date DATE_OF_REGISTRATION, String name, String address) {
+    public RegisteredUser(String email, String creditCardNumber, String CVC, String expiryDate, Date DATE_OF_REGISTRATION, String name, String address) {
         super(email, creditCardNumber, CVC, expiryDate);
         this.DATE_OF_REGISTRATION = DATE_OF_REGISTRATION;
         this.name = name;

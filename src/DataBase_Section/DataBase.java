@@ -90,7 +90,7 @@ public class DataBase {
     }
 
     // Inserting a new User (Registered) into the Data Base 
-    public boolean insertNewRegisteredUser(String name, String email, String password, String address, LocalDate registrationDate) {
+    public boolean insertNewRegisteredUser(String name, String email, String password, String address, String creditCard, String CVC, String creditCardExpire, LocalDate registrationDate) {
         String insertUserQuery = "INSERT INTO Users (email, u_password) VALUES (?, ?)";
         String insertRegisteredUserQuery = "INSERT INTO RegisteredUsers (email, ru_name, ru_address, date_of_registration) VALUES (?, ?, ?, ?)";
 
