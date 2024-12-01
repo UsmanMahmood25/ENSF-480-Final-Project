@@ -1,14 +1,11 @@
 package UI_Components;
 
 import javax.swing.*;
-
-import Data_Components.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 import DataBase_Section.*;
+import Data_Components.*;
 
 public class TheaterSelectionUI extends JPanel {
     private JComboBox<String> theaterDropdown;
@@ -73,15 +70,18 @@ public class TheaterSelectionUI extends JPanel {
     private void onTheaterSelected(ActionEvent e) {
         String selectedTheater = (String) theaterDropdown.getSelectedItem();
         
-        
+        // Use a HashSet to ensure uniqueness of movie names
+        Set<String> uniqueMovies = new HashSet<>();
         ArrayList<Movie> movies = DB_Connection.getMoviesForTheater(selectedTheater);
         String[] movieArray = new String[movies.size() + 1];
         movieArray[0] = "Select Movie";
         
         for (int i = 0; i < movies.size(); i++) {
-            movieArray[i + 1] = movies.get(i).getMovieName();
+            uniqueMovies.add(movies.get(i).getMovieName());
         }
-
+        
+        movieArray = uniqueMovies.toArray(new String[0]);
+        
         movieDropdown.setModel(new JComboBox<>(movieArray).getModel());
         movieDropdown.setVisible(true);
     }
@@ -121,4 +121,6 @@ public class TheaterSelectionUI extends JPanel {
     private void onTimeSelected(ActionEvent e) {
         cardLayout.show(mainPanel, "Seats");
     }
+
+    
 }

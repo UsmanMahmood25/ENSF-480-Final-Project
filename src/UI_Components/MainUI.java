@@ -57,7 +57,7 @@ public class MainUI {
         HomeUI homePanel = new HomeUI(cardLayout, mainPanel);
         SignUp_LoginUI signup_loginPanel = new SignUp_LoginUI(cardLayout, mainPanel);
         MovieSelectUI moviePanel = new MovieSelectUI(cardLayout, mainPanel);
-        PaymentUI paymentPanel = new PaymentUI(cardLayout, mainPanel);
+        PaymentUI paymentPanel = new PaymentUI(cardLayout, mainPanel, currentRegisteredUser);
         SeatMapUI seatPanel = new SeatMapUI(cardLayout, mainPanel);
         TheaterSelectionUI theaterPanel = new TheaterSelectionUI(cardLayout, mainPanel);
         TicketBookingUI bookingPanel = new TicketBookingUI(cardLayout, mainPanel);
