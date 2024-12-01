@@ -101,6 +101,9 @@ public class DataBase {
             // Insert into Users table
             insertUserStmt.setString(1, email);
             insertUserStmt.setString(2, password);
+            insertUserStmt.setString(3, creditCardNumber);
+            insertUserStmt.setString(4, CVC);
+            insertUserStmt.setString(5, expiryDate);
             int userRowsAffected = insertUserStmt.executeUpdate();
 
             if (userRowsAffected == 0) {
