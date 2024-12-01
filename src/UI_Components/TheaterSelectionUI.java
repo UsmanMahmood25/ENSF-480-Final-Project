@@ -6,7 +6,6 @@ import Data_Components.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import DataBase_Section.*;
@@ -120,8 +119,6 @@ public class TheaterSelectionUI extends JPanel {
     }
     
     private void onTimeSelected(ActionEvent e) {
-        JButton button = (JButton) e.getSource();
-        button.setBackground(Color.BLUE);
         cardLayout.show(mainPanel, "Seats");
     }
 }
