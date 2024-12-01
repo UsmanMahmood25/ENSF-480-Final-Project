@@ -2,6 +2,7 @@ package DataBase_Section;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class DataBase {
     
@@ -90,7 +91,7 @@ public class DataBase {
     }
 
     // Inserting a new User (Registered) into the Data Base 
-    public boolean insertNewRegisteredUser(String name, String email, String password, String address, String creditCardNumber, String CVC, String expiryDate, LocalDate registrationDate) {
+    public boolean insertNewRegisteredUser(String name, String email, String password, String address, String creditCardNumber, String CVC, String expiryDate, Date registrationDate) {
         String insertUserQuery = "INSERT INTO Users (email, u_password, credit_card_number, cvc, u_expiry_date) VALUES (?, ?, ?, ?, ?)";
         String insertRegisteredUserQuery = "INSERT INTO RegisteredUsers (email, ru_name, ru_address, date_of_registration) VALUES (?, ?, ?, ?)";
 
@@ -115,7 +116,7 @@ public class DataBase {
             insertRegisteredUserStmt.setString(1, email);
             insertRegisteredUserStmt.setString(2, name);
             insertRegisteredUserStmt.setString(3, address);
-            insertRegisteredUserStmt.setDate(4, java.sql.Date.valueOf(registrationDate));
+            insertRegisteredUserStmt.setDate(4, new java.sql.Date(registrationDate.getTime()));;
             int registeredUserRowsAffected = insertRegisteredUserStmt.executeUpdate();
 
             return registeredUserRowsAffected > 0; // Success if both inserts succeed

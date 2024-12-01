@@ -9,7 +9,8 @@ import Data_Components.RegisteredUser;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.time.LocalDate;
+import java.time.Instant;
+import java.util.Date;
 
 public class SignUp_LoginUI extends JPanel {
 
@@ -230,7 +231,7 @@ public class SignUp_LoginUI extends JPanel {
             if (MainUI.dataBase.checkRegisteredUserExists(email)) {
                 if (MainUI.dataBase.verifyLoginCredentials(email, password)) {
                     JOptionPane.showMessageDialog(this, "Login Successful!");
-
+                    
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid Password.");
                 }
@@ -248,7 +249,7 @@ public class SignUp_LoginUI extends JPanel {
             String creditCardNumber = signUpCCField.getText();
             String CVC = signUpCC_CVCField.getText();
             String expiryDate = signUpCC_ExpireField.getText();
-            LocalDate registrationDate = LocalDate.now(); // Automatically set to the current date
+            Date registrationDate = new Date(); // Automatically set to the current date
 
             if (password.equals(confirmPassword)) {
                 if (!MainUI.dataBase.checkUserExists(email)) {
@@ -256,7 +257,8 @@ public class SignUp_LoginUI extends JPanel {
                     boolean success = MainUI.dataBase.insertNewRegisteredUser(name, email, password, address, creditCardNumber, CVC, expiryDate, registrationDate);
                     if (success) {
                         JOptionPane.showMessageDialog(this, "Sign-Up Successful!");
-                        // MainUI.currentRegisteredUser = new RegisteredUser(email, password, confirmPassword, null, null, name, address);
+                        MainUI.currentRegisteredUser = new RegisteredUser(email, creditCardNumber, CVC, expiryDate, registrationDate, name, address);
+                        cardLayout.show(mainPanel, "Theater");
                     } else {
                         JOptionPane.showMessageDialog(this, "Sign-Up Failed! Please try again.");
                     }
