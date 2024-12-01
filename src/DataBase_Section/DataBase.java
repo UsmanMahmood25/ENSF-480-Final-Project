@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Data_Components.Movie;
+import Data_Components.*;
 
 public class DataBase {
     
