@@ -232,7 +232,7 @@ public class SignUp_LoginUI extends JPanel {
                     JOptionPane.showMessageDialog(this, "Login Successful!");
                     MainUI.currentRegisteredUser = MainUI.dataBase.getRegisteredUserInfo(email);
                     System.out.println("");
-                    System.out.println("... Logged in as a RU ...");
+                    System.out.println("... Logged in as a Registered User ...");
                     System.out.println("");
                     cardLayout.show(mainPanel, "Theater");
                 } else {
@@ -243,7 +243,7 @@ public class SignUp_LoginUI extends JPanel {
                     JOptionPane.showMessageDialog(this, "Login Successful!");
                     MainUI.currentUser = MainUI.dataBase.getUserInfo(email);
                     System.out.println("");
-                    System.out.println("... Logged in as a User ...");
+                    System.out.println("... Logged in as a Standard User ...");
                     System.out.println("");
                     cardLayout.show(mainPanel, "Theater");
                 } else {

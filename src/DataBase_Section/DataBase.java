@@ -14,6 +14,11 @@ public class DataBase {
     // Ctor for DataBase class
     public DataBase() {}
 
+    // Getter for Connection
+    public Connection getConnection() {
+        return DB_Connection;
+    }
+
     // Creating Connection to the MySQL DataBase
     public void createConnection() {
         String url = "jdbc:mysql://localhost:3306/project_db";
@@ -88,7 +93,7 @@ public class DataBase {
 
     // Inserting a new User (Standard) into the Data Base
     public boolean insertNewUser(String email, String password, String creditCardNumber, String CVC, String expiryDate) {
-        String query = "INSERT INTO Users (email, u_password) VALUES (?, ?)";
+        String query = "INSERT INTO Users (email, u_password, credit_card_number, cvc, expiry_date) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = DB_Connection.prepareStatement(query)) {
             // Set the parameters for the PreparedStatement
             preparedStatement.setString(1, email);
@@ -288,6 +293,41 @@ public class DataBase {
         }
     }
 
+    // Checking the User linked with Financial Institution (USED BY FinancialInst.java)
+    public static void viewAllUsers(Connection conn) {
+        String query = "SELECT email FROM Users";
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            System.out.println("\n--- All Registered User Emails ---");
+            while (rs.next()) {
+                System.out.println("Email: " + rs.getString("email"));
+            }
+            System.out.println("----------------------------------");
+        } catch (SQLException e) {
+            System.out.println("Error retrieving user emails: " + e.getMessage());
+        }
+    }
+
+    // Checking specific User's information (USED BY FinancialInst.java)
+    public static void viewSpecificUser(Connection conn, String email) {
+        String query = "SELECT credit_card_number, cvc, expiry_date FROM Users WHERE email = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, email);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    System.out.println("\n--- User Credit Card Details ---");
+                    System.out.println("Credit Card Number: " + rs.getString("credit_card_number"));
+                    System.out.println("CVC: " + rs.getString("cvc"));
+                    System.out.println("Expiry Date: " + rs.getString("expiry_date"));
+                    System.out.println("--------------------------------");
+                } else {
+                    System.out.println("No user found with email: " + email);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving user details: " + e.getMessage());
+        }
+    }
+    
 
     // Closing the Data Base when program finished
     public void closeConnection() {
