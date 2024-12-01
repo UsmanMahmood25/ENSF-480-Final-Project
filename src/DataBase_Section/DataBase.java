@@ -194,9 +194,9 @@ public class DataBase {
 
     public ArrayList<Date> getShowDatesForMovie(String movieName) {
         ArrayList<Date> showDates = new ArrayList<>();
-        String query = "SELECT DISTINCT DATE(s.showtimes) AS show_date FROM Showtimes s " +
-                    "JOIN Movie m ON s.movie_id = m.movie_id " +
-                    "WHERE m.movie_name = ?";
+        String query = "SELECT DISTINCT DATE(s.showDate) AS show_date FROM Showtimes s " +
+                    "JOIN Movies m ON s.movie = m.movie_id " +
+                    "WHERE m.m_name = ?";
 
         try (PreparedStatement getShowDatesStmt = DB_Connection.prepareStatement(query)) {
             getShowDatesStmt.setString(1, movieName);  // Set the selected movie's name
@@ -215,8 +215,8 @@ public class DataBase {
 
     public ArrayList<String> getShowtimesForDate(String date) {
         ArrayList<String> showtimes = new ArrayList<>();
-        String query = "SELECT DISTINCT TIME(s.showtimes) AS showtime FROM Showtimes s " +
-                       "WHERE DATE(s.showtimes) = ?";
+        String query = "SELECT DISTINCT TIME(s.showDate) AS showtime FROM Showtimes s " +
+                       "WHERE DATE(s.showDate) = ?";
     
         try (PreparedStatement getShowtimesStmt = DB_Connection.prepareStatement(query)) {
             getShowtimesStmt.setString(1, date);  // Set the date (e.g., '2024-11-30')
