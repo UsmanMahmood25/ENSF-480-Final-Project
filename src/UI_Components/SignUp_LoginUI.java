@@ -9,7 +9,6 @@ import Data_Components.RegisteredUser;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.time.Instant;
 import java.util.Date;
 
 public class SignUp_LoginUI extends JPanel {
@@ -229,9 +228,24 @@ public class SignUp_LoginUI extends JPanel {
             String password = new String(loginPasswordField.getPassword());
 
             if (MainUI.dataBase.checkRegisteredUserExists(email)) {
-                if (MainUI.dataBase.verifyLoginCredentials(email, password)) {
+                if (MainUI.dataBase.verifyRULoginCredentials(email, password)) {
                     JOptionPane.showMessageDialog(this, "Login Successful!");
-                    
+                    MainUI.currentRegisteredUser = MainUI.dataBase.getRegisteredUserInfo(email);
+                    System.out.println("");
+                    System.out.println("... Logged in as a RU ...");
+                    System.out.println("");
+                    cardLayout.show(mainPanel, "Theater");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid Password.");
+                }
+            } else if (MainUI.dataBase.checkUserExists(email)) {
+                if (MainUI.dataBase.verifyUserLoginCredentials(email, password)) {
+                    JOptionPane.showMessageDialog(this, "Login Successful!");
+                    MainUI.currentUser = MainUI.dataBase.getUserInfo(email);
+                    System.out.println("");
+                    System.out.println("... Logged in as a User ...");
+                    System.out.println("");
+                    cardLayout.show(mainPanel, "Theater");
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid Password.");
                 }

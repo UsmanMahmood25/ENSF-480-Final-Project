@@ -39,7 +39,21 @@ public class HomeUI extends JPanel {
         add(redirectButton2);
 
         // Add action listener to redirect1 button
-        redirectButton1.addActionListener(e -> cardLayout.show(mainPanel, "Sign-Up/Login"));
+        
+        redirectButton1.addActionListener(e -> { 
+            // Checking Logged Status
+            if ((MainUI.currentUser != null) || (MainUI.currentRegisteredUser != null)) {
+                if (MainUI.currentUser != null) {
+                    MainUI.currentUser.getEmail();
+                }
+                if (MainUI.currentRegisteredUser != null) {
+                    MainUI.currentRegisteredUser.getName();
+                }
+                cardLayout.show(mainPanel, "Theater"); // Redirected to the Theater if already logged in
+            } else {
+                cardLayout.show(mainPanel, "Sign-Up/Login");
+            }
+        });
         // Add action listener to redirect2 button
         redirectButton2.addActionListener(e -> cardLayout.show(mainPanel, "Theater"));
     }

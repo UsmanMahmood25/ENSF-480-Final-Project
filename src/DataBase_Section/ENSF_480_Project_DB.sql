@@ -15,7 +15,7 @@ CREATE TABLE Users (
     u_password VARCHAR(100),
     credit_card_number VARCHAR(16),
     cvc VARCHAR(3),
-    u_expiry_date DATE
+    expiry_date VARCHAR(20)
 );
 
 -- Create the RegisteredUsers table
@@ -160,7 +160,7 @@ INSERT IGNORE INTO Theater_Movies (theater_id, movie_id) VALUES
 (2, 3);
 
 -- Insert some mock data into the Users table
-INSERT IGNORE INTO Users (email, u_password, credit_card_number, cvc, u_expiry_date) VALUES
+INSERT IGNORE INTO Users (email, u_password, credit_card_number, cvc, expiry_date) VALUES
 ('john.doe@example.com', 'password123', '1234567890123456', '123', '2025-12-01'),
 ('jane.smith@example.com', 'password456', '9876543210987654', '456', '2026-06-15'),
 ('alice.jones@example.com', 'password789', '5555555555555555', '789', '2027-03-20');
