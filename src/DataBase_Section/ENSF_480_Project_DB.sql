@@ -157,7 +157,7 @@ INSERT IGNORE INTO Screens (theater_id, screen_name, s_rows, s_cols) VALUES
 INSERT IGNORE INTO Theater_Movies (theater_id, movie_id) VALUES
 (1, 1),
 (1, 2),
-(2, 3);s
+(2, 3);
 
 -- Insert some mock data into the Users table
 INSERT IGNORE INTO Users (email, u_password, credit_card_number, cvc, u_expiry_date) VALUES
