@@ -67,6 +67,22 @@ CREATE TABLE Theater_Movies (
     FOREIGN KEY (movie_id) REFERENCES Movies(movie_id) ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS Showtimes;
+CREATE TABLE Showtimes (
+    showtimeId INT AUTO_INCREMENT PRIMARY KEY,
+    movie INT,
+    theater INT,
+    screen INT,
+    showDate DATETIME,
+    announceDate DATETIME,
+    ticketPrice DECIMAL(5, 2),
+    FOREIGN KEY (movie) REFERENCES Movies(movie_id),
+    FOREIGN KEY (theater) REFERENCES Theater(theater_id),
+    FOREIGN KEY (screen) REFERENCES Screens(screen_id)
+);
+
+
+
 
 
 
@@ -158,6 +174,15 @@ INSERT IGNORE INTO Theater_Movies (theater_id, movie_id) VALUES
 (1, 1),
 (1, 2),
 (2, 3);
+
+INSERT IGNORE INTO Showtimes (movie, theater, screen, showDate, announceDate, ticketPrice) VALUES
+(1, 1, 1, '2024-12-01 18:30:00', '2024-11-15 10:00:00', 12.99),
+(2, 1, 2, '2024-12-01 19:00:00', '2024-11-16 11:30:00', 15.49),
+(3, 2, 1, '2024-12-02 20:00:00', '2024-11-18 12:00:00', 18.00),
+(1, 3, 1, '2024-12-02 21:00:00', '2024-11-20 14:00:00', 13.99),
+(2, 1, 2, '2024-12-03 16:00:00', '2024-11-21 09:00:00', 16.49),
+(3, 2, 1, '2024-12-03 17:00:00', '2024-11-22 10:30:00', 17.99);
+
 
 -- Insert some mock data into the Users table
 INSERT IGNORE INTO Users (email, u_password, credit_card_number, cvc, u_expiry_date) VALUES

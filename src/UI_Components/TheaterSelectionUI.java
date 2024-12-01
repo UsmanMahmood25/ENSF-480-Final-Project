@@ -2,7 +2,6 @@ package UI_Components;
 
 import javax.swing.*;
 
-
 import Data_Components.Movie;
 import Data_Components.Screen;
 import Data_Components.Showtime;
@@ -13,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import DataBase_Section.*;
 
 public class TheaterSelectionUI extends JPanel {
     private JComboBox<String> theaterDropdown;
@@ -22,31 +22,27 @@ public class TheaterSelectionUI extends JPanel {
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private JButton backButton;
+    private DataBase DB_Connection = MainUI.dataBase;
 
     public TheaterSelectionUI(CardLayout cardLayout, JPanel mainPanel) {
         this.cardLayout = cardLayout;
         this.mainPanel = mainPanel;
 
-        ArrayList<Movie> ml = new ArrayList<Movie>();
-        ml.add(new Movie("m1", "horror",123.5, "scary"));
-        ml.add(new Movie("m2", "comedy", 105.64, "funny"));
+        // Get the list of theaters from the database
+        ArrayList<String> theaters = DB_Connection.getTheatres();
+        String[] theaterArray = theaters.toArray(new String[0]);
 
-        ArrayList<Screen> sl = new ArrayList<Screen>();
-        sl.add(new Screen("screen 1 - 3x3", 3, 3));
-        sl.add(new Screen("screen 2 - 5x6", 5, 6));
-
-        Theatre theatre = new Theatre("theatre 1", "123 abc st", ml, sl);
-        Date d = new Date();
-        Showtime showtime = new Showtime(theatre.getMovieList().get(0), theatre, theatre.getScreens().get(0), d, d, 10.15);
-        
-        theaterDropdown = new JComboBox<>(new String[]{"Select Theater", theatre.getTheatreName()});
+        // Initialize the theater dropdown with real data
+        theaterDropdown = new JComboBox<>(theaterArray);
         theaterDropdown.addActionListener(this::onTheaterSelected);
 
-        movieDropdown = new JComboBox<>(new String[]{"Select Movie", theatre.getMovieList().get(0).getMovieName(), theatre.getMovieList().get(1).getMovieName()});
+        // Initialize the movie dropdown (initially hidden)
+        movieDropdown = new JComboBox<>(new String[]{"Select Movie"});
         movieDropdown.setVisible(false);
         movieDropdown.addActionListener(this::onMovieSelected);
 
-        dateDropdown = new JComboBox<>(new String[]{"Select Date", "Sample Date"});
+        // Initialize the date dropdown (initially hidden)
+        dateDropdown = new JComboBox<>(new String[]{"Select Date"});
         dateDropdown.setVisible(false);
         dateDropdown.addActionListener(this::onDateSelected);
 
@@ -83,20 +79,57 @@ public class TheaterSelectionUI extends JPanel {
     }
 
     private void onTheaterSelected(ActionEvent e) {
+        String selectedTheater = (String) theaterDropdown.getSelectedItem();
+        
+        
+        // Get the list of movies for the selected theater from the database
+        ArrayList<Movie> movies = DB_Connection.getMoviesForTheater(selectedTheater);
+        String[] movieArray = new String[movies.size() + 1];
+        movieArray[0] = "Select Movie"; // Default option
+        
+        for (int i = 0; i < movies.size(); i++) {
+            movieArray[i + 1] = movies.get(i).getMovieName();
+        }
+
+        // Populate movie dropdown with the movies for the selected theater
+        movieDropdown.setModel(new JComboBox<>(movieArray).getModel());
         movieDropdown.setVisible(true);
     }
 
     private void onMovieSelected(ActionEvent e) {
+        String selectedMovie = (String) movieDropdown.getSelectedItem();
+        
+        // Get the list of dates (showtimes) for the selected movie from the database
+        ArrayList<Date> showDates = DB_Connection.getShowDatesForMovie(selectedMovie);
+        String[] dateArray = new String[showDates.size() + 1];
+        dateArray[0] = "Select Date"; // Default option
+
+        for (int i = 0; i < showDates.size(); i++) {
+            dateArray[i + 1] = showDates.get(i).toString(); // Convert Date to String for display
+        }
+
+        // Populate the date dropdown with the available show dates for the selected movie
+        dateDropdown.setModel(new JComboBox<>(dateArray).getModel());
         dateDropdown.setVisible(true);
     }
 
     private void onDateSelected(ActionEvent e) {
+        String selectedDate = (String) dateDropdown.getSelectedItem();
+        
+        // Get the available showtimes for the selected date
+        ArrayList<String> showtimes = DB_Connection.getShowtimesForDate(selectedDate);
+
+        // Remove previous time buttons
         timePanel.removeAll();
-        for (int i = 10; i <= 22; i++) {
-            JButton timeButton = new JButton(i + ":00");
+
+        // Add buttons for each available showtime
+        for (String time : showtimes) {
+            JButton timeButton = new JButton(time);
             timeButton.addActionListener(this::onTimeSelected);
             timePanel.add(timeButton);
         }
+        
+        // Revalidate and repaint the panel
         revalidate();
         repaint();
     }
@@ -106,6 +139,4 @@ public class TheaterSelectionUI extends JPanel {
         button.setBackground(Color.BLUE);
         cardLayout.show(mainPanel, "Seats");
     }
-    
-
 }
