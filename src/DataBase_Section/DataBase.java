@@ -175,8 +175,8 @@ public class DataBase {
     // Retrieving Data about Registered User
     public RegisteredUser getRegisteredUserInfo(String email) {
         String query = "SELECT U.email, U.u_password, U.credit_card_number, U.cvc, U.expiry_date, " +
-                   "RU.ru_name, RU.ru_address, RU.date_of_registration " +
-                   "FROM Users U INNER JOIN RegisteredUsers RU ON U.email = RU.email WHERE U.email = ?";
+            "RU.ru_name, RU.ru_address, RU.date_of_registration " +
+            "FROM Users U INNER JOIN RegisteredUsers RU ON U.email = RU.email WHERE U.email = ?";
         try (PreparedStatement preparedStatement = DB_Connection.prepareStatement(query)) {
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
