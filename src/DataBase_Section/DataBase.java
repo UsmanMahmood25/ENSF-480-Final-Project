@@ -1,18 +1,11 @@
 package DataBase_Section;
 
 import java.sql.*;
-<<<<<<< HEAD
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 import Data_Components.Movie;
-=======
-import java.util.Date;
-
-import Data_Components.RegisteredUser;
-import Data_Components.User;
->>>>>>> 29610a81818c868d3ebb484e651c5c4f1c6d8e6d
 
 public class DataBase {
     
@@ -154,7 +147,6 @@ public class DataBase {
         }
     }
 
-<<<<<<< HEAD
     public ArrayList<String> getTheatres() {
         ArrayList<String> theatres = new ArrayList<>();
         String query = "SELECT theater_name FROM Theater";
@@ -240,7 +232,6 @@ public class DataBase {
     }
     
 
-=======
     // Retrieving data about Standard User
     public User getUserInfo(String email) {
         String query = "SELECT email, credit_card_number, cvc, expiry_date FROM Users WHERE email = ?";
@@ -299,7 +290,6 @@ public class DataBase {
     }
 
 
->>>>>>> 29610a81818c868d3ebb484e651c5c4f1c6d8e6d
     // Closing the Data Base when program finished
     public void closeConnection() {
         try {  
