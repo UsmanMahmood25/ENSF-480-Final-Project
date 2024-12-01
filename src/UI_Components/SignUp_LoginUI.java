@@ -245,15 +245,15 @@ public class SignUp_LoginUI extends JPanel {
             String password = new String(signUpPasswordField.getPassword());
             String confirmPassword = new String(confirmPasswordField.getPassword());
             String address = signUpAddressField.getText(); // New field for address
-            String creditCard = signUpCCField.getText();
+            String creditCardNumber = signUpCCField.getText();
             String CVC = signUpCC_CVCField.getText();
-            String creditCardExpire = signUpCC_ExpireField.getText();
+            String expiryDate = signUpCC_ExpireField.getText();
             LocalDate registrationDate = LocalDate.now(); // Automatically set to the current date
 
             if (password.equals(confirmPassword)) {
                 if (!MainUI.dataBase.checkUserExists(email)) {
                     // Insert user into the database
-                    boolean success = MainUI.dataBase.insertNewRegisteredUser(name, email, password, address, creditCard, CVC, creditCardExpire, registrationDate);
+                    boolean success = MainUI.dataBase.insertNewRegisteredUser(name, email, password, address, creditCardNumber, CVC, expiryDate, registrationDate);
                     if (success) {
                         JOptionPane.showMessageDialog(this, "Sign-Up Successful!");
                         // MainUI.currentRegisteredUser = new RegisteredUser(email, password, confirmPassword, null, null, name, address);
