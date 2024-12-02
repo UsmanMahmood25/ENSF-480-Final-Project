@@ -17,7 +17,7 @@ public class ManagerAccess {
         dataBase.createConnection();
 
         // Setting up a general scanner
-        Scanner text = new Scanner("Usernamne: ");
+        Scanner text = new Scanner(System.in);
 
         System.out.println("");
         System.out.println("--- Hello Theater Manager ---");
