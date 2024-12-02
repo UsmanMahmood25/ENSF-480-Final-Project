@@ -96,28 +96,6 @@ public class ShowtimeController {
         return theatres;
     }
 
-    public ArrayList<Ticket> getTicketsByEmail(String email) {
-        ArrayList<Ticket> tickets = new ArrayList<>();
-        String query = "SELECT * FROM tickets WHERE email = ?";
-        try (PreparedStatement statement = DB_Connection.prepareStatement(query)) {
-            statement.setString(1, email);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Ticket ticket = new Ticket(
-                    resultSet.getString("email"),
-                    resultSet.getInt("showtime_id"),
-                    resultSet.getInt("seat_row"),
-                    resultSet.getInt("seat_col"),
-                    resultSet.getDouble("price")
-                );
-                tickets.add(ticket);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error inserting new registered user.");
-            e.printStackTrace();
-        }
-        return tickets;
-    }
 
     public boolean cancelTicket(int showtimeId, int seatRow, int seatCol) {
         String query = "DELETE FROM tickets WHERE showtime_id = ? AND seat_row = ? AND seat_col = ?";
