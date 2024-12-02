@@ -15,7 +15,11 @@ And run with the following line:
 
 java -cp "bin;lib/mysql-connector-j-9.1.0.jar" UI_Components.MainUI
 
+The following is required to run the jar file:
+java -cp "2.jar;lib/mysql-connector-j-9.1.0.jar" UI_Components.MainUI
+
 If you encounter any difficulties running this software, please reach out to any or all of our
 team members at our university email addresses, as we would be happy to provide support.
 
 Thank you for your time and have a great winter break!
+
