@@ -13,10 +13,16 @@ javac -cp lib/mysql-connector-j-9.1.0.jar -d bin src/UI_Components/*.java src/Da
 
 And run with the following line:
 
+For MainUI:
 java -cp "bin;lib/mysql-connector-j-9.1.0.jar" UI_Components.MainUI
 
 The following is required to run the jar file:
 java -cp "2.jar;lib/mysql-connector-j-9.1.0.jar" UI_Components.MainUI
+For ManagerAccess:
+java -cp "bin;lib/mysql-connector-j-9.1.0.jar" DataBase_Section.ManagerAccess
+
+For Financial Institution
+java -cp "bin;lib/mysql-connector-j-9.1.0.jar" DataBase_Section.FinancialInst
 
 If you encounter any difficulties running this software, please reach out to any or all of our
 team members at our university email addresses, as we would be happy to provide support.
