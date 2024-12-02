@@ -9,7 +9,7 @@ public class FinancialInst {
 
     private static String username = "alex";
     private static String password = "password";
-    public static final DataBase dataBase = new DataBase();
+    public static final GeneralDataBase dataBase = new GeneralDataBase();
        
     public static void main(String []args) {
 
@@ -61,12 +61,12 @@ public class FinancialInst {
 
                 switch (choice) {
                     case 1:
-                        DataBase.viewAllUsers(dataBase.getConnection());
+                        GeneralDataBase.viewAllUsers(dataBase.getConnection());
                         break;
                     case 2:
                         System.out.print("Enter the email of the user: ");
                         String email = scanner.nextLine();
-                        DataBase.viewSpecificUser(dataBase.getConnection(), email);
+                        GeneralDataBase.viewSpecificUser(dataBase.getConnection(), email);
                         break;
                     case 3:
                         condition = false;

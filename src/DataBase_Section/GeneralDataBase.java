@@ -1,18 +1,14 @@
 package DataBase_Section;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Date;
 
-import Data_Components.*;
-
-public class DataBase {
+public class GeneralDataBase {
     
     private Connection DB_Connection;
     private ResultSet DB_Results;
 
     // Ctor for DataBase class
-    public DataBase() {}
+    public GeneralDataBase() {}
 
     // Getter for Connection
     public Connection getConnection() {
@@ -23,7 +19,7 @@ public class DataBase {
     public void createConnection() {
         String url = "jdbc:mysql://localhost:3306/project_db";
         String username = "root";
-        String password = "Gabber793$";
+        String password = ""; // (REPLACE WITH YOUR MySQL PASSWORD)
         try {
             DB_Connection = DriverManager.getConnection(url, username, password);
             System.out.println("Database connected successfully!");
@@ -67,7 +63,44 @@ public class DataBase {
             System.out.println("Error retrieving user details: " + e.getMessage());
         }
     }
+
+    // Method to insert a new movie into the database (USED BY ManagerAccess.java)
+    public static void insertMovie(Connection conn, int movieId, String movieName, String genre, int duration, String description) {
+        String query = "INSERT INTO Movies (movie_id, m_name, genre, duration, short_description) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, movieId);
+            pstmt.setString(2, movieName);
+            pstmt.setString(3, genre);
+            pstmt.setInt(4, duration);
+            pstmt.setString(5, description);
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Movie inserted successfully!");
+            } else {
+                System.out.println("Failed to insert movie.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error inserting movie: " + e.getMessage());
+        }
+    }
     
+    // Method to view all movies in the database (USED BY ManagerAccess.java)
+    public static void viewAllMovies(Connection conn) {
+        String query = "SELECT * FROM Movies";
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            System.out.println("\n--- All Movies in Database ---");
+            while (rs.next()) {
+                System.out.println("Movie ID: " + rs.getInt("movie_id"));
+                System.out.println("Movie Name: " + rs.getString("m_name"));
+                System.out.println("Genre: " + rs.getString("genre"));
+                System.out.println("Duration: " + rs.getInt("duration") + " minutes");
+                System.out.println("Description: " + rs.getString("short_description"));
+                System.out.println("---------------------------------");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving movies: " + e.getMessage());
+        }
+    }
 
     // Closing the Data Base when program finished
     public void closeConnection() {
