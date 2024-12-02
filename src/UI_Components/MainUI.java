@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
 
 import DataBase_Section.*;
 import Data_Components.*;
@@ -13,8 +14,13 @@ public class MainUI {
     // Initializing the frame of UI
     public static int frameWidth;
     public static int frameHeight;
+
     // Initializing the dataBase
-    public static final DataBase dataBase = new DataBase();
+    // public static final DataBase dataBase = new DataBase();
+    public static DB_ConnectionManager dbConnect = new DB_ConnectionManager();
+    public static UserController userController;
+    public static ShowtimeController showTimeController;
+
     // Intializing the Users (Standard and Registered)
     public static User currentUser = null;
     public static RegisteredUser currentRegisteredUser = null;
@@ -22,8 +28,12 @@ public class MainUI {
     public static void main(String [] args) {
 
         // Connecting to the DataBase
-        dataBase.createConnection();
-        
+        // dataBase.createConnection();
+        dbConnect.createConnection();
+        Connection connValue = dbConnect.getConnection();
+        userController = new UserController(connValue);
+        showTimeController = new ShowtimeController(connValue);
+
         // Set-up screen dimensions
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenWidth = screenSize.width;
@@ -45,7 +55,7 @@ public class MainUI {
             @Override
             public void windowClosing(WindowEvent e) {
                 // Close the database connection when the window is closed
-                dataBase.closeConnection();
+                dbConnect.closeConnection();
                 System.exit(0); // Exit the application
             }
         });
@@ -55,11 +65,11 @@ public class MainUI {
 
         // Creating the sub-level panels (instances of panels)
         HomeUI homePanel = new HomeUI(cardLayout, mainPanel);
-        SignUp_LoginUI signup_loginPanel = new SignUp_LoginUI(cardLayout, mainPanel);
+        SignUp_LoginUI signup_loginPanel = new SignUp_LoginUI(cardLayout, mainPanel, userController);
         MovieSelectUI moviePanel = new MovieSelectUI(cardLayout, mainPanel);
         PaymentUI paymentPanel = new PaymentUI(cardLayout, mainPanel, currentRegisteredUser);
         SeatMapUI seatPanel = new SeatMapUI(cardLayout, mainPanel);
-        TheaterSelectionUI theaterPanel = new TheaterSelectionUI(cardLayout, mainPanel);
+        TheaterSelectionUI theaterPanel = new TheaterSelectionUI(cardLayout, mainPanel, showTimeController);
         TicketBookingUI bookingPanel = new TicketBookingUI(cardLayout, mainPanel);
         TicketManagerUI ticketManagerPanel = new TicketManagerUI(cardLayout, mainPanel);
 

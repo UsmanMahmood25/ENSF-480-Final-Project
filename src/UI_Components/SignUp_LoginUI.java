@@ -4,7 +4,8 @@ package UI_Components;
 
 import javax.swing.*;
 
-import Data_Components.RegisteredUser;
+import DataBase_Section.*;
+import Data_Components.*;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -13,7 +14,7 @@ import java.util.Date;
 
 public class SignUp_LoginUI extends JPanel {
 
-    public SignUp_LoginUI(CardLayout cardLayout, JPanel mainPanel) {
+    public SignUp_LoginUI(CardLayout cardLayout, JPanel mainPanel, UserController userController) {
 
         // Setting Default Values for the UI
         setLayout(null);
@@ -227,10 +228,10 @@ public class SignUp_LoginUI extends JPanel {
             String email = loginUsernameField.getText();
             String password = new String(loginPasswordField.getPassword());
 
-            if (MainUI.dataBase.checkRegisteredUserExists(email)) {
-                if (MainUI.dataBase.verifyRULoginCredentials(email, password)) {
+            if (userController.checkRegisteredUserExists(email)) {
+                if (userController.verifyRULoginCredentials(email, password)) {
                     JOptionPane.showMessageDialog(this, "Login Successful!");
-                    MainUI.currentRegisteredUser = MainUI.dataBase.getRegisteredUserInfo(email);
+                    MainUI.currentRegisteredUser = userController.getRegisteredUserInfo(email);
                     System.out.println("");
                     System.out.println("... Logged in as a Registered User ...");
                     System.out.println("");
@@ -238,10 +239,10 @@ public class SignUp_LoginUI extends JPanel {
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid Password.");
                 }
-            } else if (MainUI.dataBase.checkUserExists(email)) {
-                if (MainUI.dataBase.verifyUserLoginCredentials(email, password)) {
+            } else if (userController.checkUserExists(email)) {
+                if (userController.verifyUserLoginCredentials(email, password)) {
                     JOptionPane.showMessageDialog(this, "Login Successful!");
-                    MainUI.currentUser = MainUI.dataBase.getUserInfo(email);
+                    MainUI.currentUser = userController.getUserInfo(email);
                     System.out.println("");
                     System.out.println("... Logged in as a Standard User ...");
                     System.out.println("");
@@ -266,9 +267,9 @@ public class SignUp_LoginUI extends JPanel {
             Date registrationDate = new Date(); // Automatically set to the current date
 
             if (password.equals(confirmPassword)) {
-                if (!MainUI.dataBase.checkUserExists(email)) {
+                if (!userController.checkUserExists(email)) {
                     // Insert user into the database
-                    boolean success = MainUI.dataBase.insertNewRegisteredUser(name, email, password, address, creditCardNumber, CVC, expiryDate, registrationDate);
+                    boolean success = userController.insertNewRegisteredUser(name, email, password, address, creditCardNumber, CVC, expiryDate, registrationDate);
                     if (success) {
                         JOptionPane.showMessageDialog(this, "Sign-Up Successful!");
                         MainUI.currentRegisteredUser = new RegisteredUser(email, creditCardNumber, CVC, expiryDate, registrationDate, name, address);

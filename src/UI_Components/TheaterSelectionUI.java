@@ -15,13 +15,14 @@ public class TheaterSelectionUI extends JPanel {
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private JButton backButton;
-    private DataBase DB_Connection = MainUI.dataBase;
+    private ShowtimeController showTimeController;
 
-    public TheaterSelectionUI(CardLayout cardLayout, JPanel mainPanel) {
+    public TheaterSelectionUI(CardLayout cardLayout, JPanel mainPanel, ShowtimeController showTimeController) {
         this.cardLayout = cardLayout;
         this.mainPanel = mainPanel;
+        this.showTimeController = showTimeController;
 
-        ArrayList<String> theaters = DB_Connection.getTheatres();
+        ArrayList<String> theaters = showTimeController.getTheatres();
         String[] theaterArray = theaters.toArray(new String[0]);
 
         JButton viewCancelTicketsButton = new JButton("View/Cancel Tickets");
@@ -77,7 +78,7 @@ public class TheaterSelectionUI extends JPanel {
         
         // Use a HashSet to ensure uniqueness of movie names
         Set<String> uniqueMovies = new HashSet<>();
-        ArrayList<Movie> movies = DB_Connection.getMoviesForTheater(selectedTheater);
+        ArrayList<Movie> movies = showTimeController.getMoviesForTheater(selectedTheater);
         String[] movieArray = new String[movies.size() + 1];
         movieArray[0] = "Select Movie";
         
@@ -94,7 +95,7 @@ public class TheaterSelectionUI extends JPanel {
     private void onMovieSelected(ActionEvent e) {
         String selectedMovie = (String) movieDropdown.getSelectedItem();
         
-        ArrayList<Date> showDates = DB_Connection.getShowDatesForMovie(selectedMovie);
+        ArrayList<Date> showDates = showTimeController.getShowDatesForMovie(selectedMovie);
         String[] dateArray = new String[showDates.size() + 1];
         dateArray[0] = "Select Date";
 
@@ -109,7 +110,7 @@ public class TheaterSelectionUI extends JPanel {
     private void onDateSelected(ActionEvent e) {
         String selectedDate = (String) dateDropdown.getSelectedItem();
         
-        ArrayList<String> showtimes = DB_Connection.getShowtimesForDate(selectedDate);
+        ArrayList<String> showtimes = showTimeController.getShowtimesForDate(selectedDate);
 
         timePanel.removeAll();
 
@@ -126,7 +127,7 @@ public class TheaterSelectionUI extends JPanel {
     private void onViewCancelTickets() {
         String email = JOptionPane.showInputDialog(this, "Enter your email:");
         if (email != null && !email.isEmpty()) {
-            ArrayList<Ticket> tickets = DB_Connection.getTicketsByEmail(email);
+            ArrayList<Ticket> tickets = showTimeController.getTicketsByEmail(email);
             if (tickets.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No tickets found for this email.");
             } else {
