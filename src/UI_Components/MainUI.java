@@ -66,7 +66,6 @@ public class MainUI {
         // Creating the sub-level panels (instances of panels)
         HomeUI homePanel = new HomeUI(cardLayout, mainPanel);
         SignUp_LoginUI signup_loginPanel = new SignUp_LoginUI(cardLayout, mainPanel, userController);
-        MovieSelectUI moviePanel = new MovieSelectUI(cardLayout, mainPanel);
         PaymentUI paymentPanel = new PaymentUI(cardLayout, mainPanel, currentRegisteredUser);
         SeatMapUI seatPanel = new SeatMapUI(cardLayout, mainPanel);
         TheaterSelectionUI theaterPanel = new TheaterSelectionUI(cardLayout, mainPanel, showTimeController);
@@ -79,7 +78,6 @@ public class MainUI {
         mainPanel.add(homePanel, "Home");
             // The other sub-level panels will appear in any order (dependent on the redirection of other UI's)
         mainPanel.add(signup_loginPanel, "Sign-Up/Login");
-        mainPanel.add(moviePanel, "Movies");
         mainPanel.add(paymentPanel, "Payment");
         mainPanel.add(seatPanel, "Seats");
         mainPanel.add(theaterPanel, "Theater");
