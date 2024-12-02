@@ -1,26 +1,26 @@
 package Data_Components;
 
 public class Ticket {
-    private String email;
+    private User user;
     private int showtimeId;
     private int seatRow;
     private int seatCol;
     private double ticketPrice;
 
-    public Ticket(String email, int showtimeId, int seatRow, int seatCol, double ticketPrice) {
-        this.email = email;
+    public Ticket(User user, int showtimeId, int seatRow, int seatCol, double ticketPrice) {
+        this.user = user;
         this.showtimeId = showtimeId;
         this.seatRow = seatRow;
         this.seatCol = seatCol;
         this.ticketPrice = ticketPrice;
     }
 
-    public String getEmail() {
-        return email;
+    public User getUser() {
+        return user;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getShowtimeId() {
@@ -53,16 +53,5 @@ public class Ticket {
 
     public void setTicketPrice(double ticketPrice) {
         this.ticketPrice = ticketPrice;
-    }
-
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "email='" + email + '\'' +
-                ", showtimeId=" + showtimeId +
-                ", seatRow=" + seatRow +
-                ", seatCol=" + seatCol +
-                ", ticketPrice=" + ticketPrice +
-                '}';
     }
 }
