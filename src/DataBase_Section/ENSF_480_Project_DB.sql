@@ -18,6 +18,8 @@ CREATE TABLE Users (
     expiry_date VARCHAR(20)
 );
 
+
+
 -- Create the RegisteredUsers table
 DROP TABLE IF EXISTS RegisteredUsers;
 CREATE TABLE RegisteredUsers (
@@ -79,6 +81,17 @@ CREATE TABLE Showtimes (
     FOREIGN KEY (movie) REFERENCES Movies(movie_id),
     FOREIGN KEY (theater) REFERENCES Theater(theater_id),
     FOREIGN KEY (screen) REFERENCES Screens(screen_id)
+);
+
+-- Create the Ticket table
+DROP TABLE IF EXISTS Ticket;
+CREATE TABLE Ticket (
+    email VARCHAR(255),
+    showtimeId INT,
+    seatRow INT,
+    seatCol INT,
+    FOREIGN KEY (email) REFERENCES Users(email) ON DELETE CASCADE,
+    FOREIGN KEY (showtimeId) REFERENCES Showtimes(showtimeId)
 );
 
 

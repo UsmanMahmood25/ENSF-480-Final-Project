@@ -24,6 +24,9 @@ public class TheaterSelectionUI extends JPanel {
         ArrayList<String> theaters = DB_Connection.getTheatres();
         String[] theaterArray = theaters.toArray(new String[0]);
 
+        JButton viewCancelTicketsButton = new JButton("View/Cancel Tickets");
+        viewCancelTicketsButton.addActionListener(e -> onViewCancelTickets());
+
         theaterDropdown = new JComboBox<>(theaterArray);
         theaterDropdown.addActionListener(this::onTheaterSelected);
 
@@ -53,7 +56,8 @@ public class TheaterSelectionUI extends JPanel {
                 .addComponent(dateDropdown)
                 .addComponent(timePanel)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(backButton))
+                    .addComponent(backButton)
+                    .addComponent(viewCancelTicketsButton))
         );
 
         layout.setVerticalGroup(
@@ -63,7 +67,8 @@ public class TheaterSelectionUI extends JPanel {
                 .addComponent(dateDropdown, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addComponent(timePanel)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton))
+                    .addComponent(backButton)
+                    .addComponent(viewCancelTicketsButton))
         );
     }
 
@@ -116,6 +121,18 @@ public class TheaterSelectionUI extends JPanel {
         
         revalidate();
         repaint();
+    }
+
+    private void onViewCancelTickets() {
+        String email = JOptionPane.showInputDialog(this, "Enter your email:");
+        if (email != null && !email.isEmpty()) {
+            ArrayList<Ticket> tickets = DB_Connection.getTicketsByEmail(email);
+            if (tickets.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No tickets found for this email.");
+            } else {
+                cardLayout.show(mainPanel, "TicketManager");
+            }
+        }
     }
     
     private void onTimeSelected(ActionEvent e) {

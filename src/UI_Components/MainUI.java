@@ -61,6 +61,8 @@ public class MainUI {
         SeatMapUI seatPanel = new SeatMapUI(cardLayout, mainPanel);
         TheaterSelectionUI theaterPanel = new TheaterSelectionUI(cardLayout, mainPanel);
         TicketBookingUI bookingPanel = new TicketBookingUI(cardLayout, mainPanel);
+        TicketManagerUI ticketManagerPanel = new TicketManagerUI(cardLayout, mainPanel);
+
 
         // Adding the sub-level panels to the main panel
             // The first sub-level panel will first appear when application is run
@@ -72,6 +74,7 @@ public class MainUI {
         mainPanel.add(seatPanel, "Seats");
         mainPanel.add(theaterPanel, "Theater");
         mainPanel.add(bookingPanel, "Booking");
+        mainPanel.add(ticketManagerPanel, "TicketManager");
 
         // Adding the primary panel to the frame
         frame.add(mainPanel);

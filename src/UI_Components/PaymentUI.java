@@ -3,10 +3,12 @@ package UI_Components;
 import javax.swing.*;
 
 import Data_Components.RegisteredUser;
+import Data_Components.Seat;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
 
 public class PaymentUI extends JPanel {
 
@@ -104,4 +106,5 @@ public class PaymentUI extends JPanel {
         }
         return true;
     }
+
 }
